@@ -16,7 +16,21 @@ public class Ingredient : EntityBase
         }
     }
 
+    private string _quantityString = string.Empty;
+    /// Original quantity string (e.g., "1/2", "1 1/2", "2.5")
+    public string QuantityString
+    {
+        get => _quantityString;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Quantity string cannot be empty or whitespace", nameof(value));
+            _quantityString = value.Trim();
+        }
+    }
+
     private decimal _quantity;
+    /// Decimal quantity for calculations (e.g., 0.5, 1.5, 2.5)
     public decimal Quantity
     {
         get => _quantity;
@@ -41,11 +55,12 @@ public class Ingredient : EntityBase
     }
 
     // Constructor for validation on creation
-    public Ingredient(string name, decimal quantity, string unit)
+    public Ingredient(string name, decimal quantity, string unit, string? quantityString = null)
     {
         Name = name;      // Triggers validation
         Quantity = quantity;  // Triggers validation
         Unit = unit;      // Triggers validation
+        QuantityString = quantityString ?? quantity.ToString();  // Store original form or decimal string
         ValidateState();  
     }
 
@@ -63,13 +78,16 @@ public class Ingredient : EntityBase
 
         if (string.IsNullOrWhiteSpace(_unit))
             throw new InvalidOperationException("Ingredient must have a valid unit");
+
+        if (string.IsNullOrWhiteSpace(_quantityString))
+            throw new InvalidOperationException("Ingredient must have a valid quantity string");
     }
 
-    /// get display name for the ingredient
+    /// get display name for the ingredient (uses original quantity format)
     public override string GetDisplayName()
     {
-        return $"{_quantity} {_unit} {_name}";
+        return $"{_quantityString} {_unit} {_name}";
     }
 
-    public override string ToString() => $"{Quantity} {Unit} {Name}";
+    public override string ToString() => $"{QuantityString} {Unit} {Name}";
 }
