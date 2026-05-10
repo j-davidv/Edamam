@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Edamam
@@ -32,7 +32,7 @@ namespace Edamam
             var title = new Label
             {
                 Text = "Delete",
-                Font = new Font("Segoe UI", 12F, FontStyle.Regular),
+                Font = new Font("Segoe UI Variable Text", 12F, FontStyle.Regular),
                 ForeColor = Color.FromArgb(33, 33, 33),
                 AutoSize = true,
                 Location = new Point(16, 12)
@@ -40,7 +40,7 @@ namespace Edamam
 
             var closeBtn = new Button
             {
-                Text = "✕",
+                Text = "X",
                 FlatStyle = FlatStyle.Flat,
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(120, 120, 120),
@@ -54,7 +54,7 @@ namespace Edamam
             var msg = new Label
             {
                 Text = message,
-                Font = new Font("Segoe UI", 10F),
+                Font = new Font("Segoe UI Variable Text", 10F),
                 ForeColor = Color.FromArgb(60, 60, 60),
                 AutoSize = false,
                 Location = new Point(16, 44),
@@ -113,3 +113,5 @@ namespace Edamam
         }
     }
 }
+
+
