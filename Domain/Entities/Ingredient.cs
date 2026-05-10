@@ -17,7 +17,6 @@ public class Ingredient : EntityBase
     }
 
     private string _quantityString = string.Empty;
-    /// Original quantity string (e.g., "1/2", "1 1/2", "2.5")
     public string QuantityString
     {
         get => _quantityString;
@@ -30,7 +29,7 @@ public class Ingredient : EntityBase
     }
 
     private decimal _quantity;
-    /// Decimal quantity for calculations (e.g., 0.5, 1.5, 2.5)
+    /// decimal calculation
     public decimal Quantity
     {
         get => _quantity;
@@ -60,7 +59,7 @@ public class Ingredient : EntityBase
         Name = name;      // Triggers validation
         Quantity = quantity;  // Triggers validation
         Unit = unit;      // Triggers validation
-        QuantityString = quantityString ?? quantity.ToString();  // Store original form or decimal string
+        QuantityString = quantityString ?? quantity.ToString(); 
         ValidateState();  
     }
 
@@ -83,7 +82,7 @@ public class Ingredient : EntityBase
             throw new InvalidOperationException("Ingredient must have a valid quantity string");
     }
 
-    /// get display name for the ingredient (uses original quantity format)
+    /// get display name for the ingredient
     public override string GetDisplayName()
     {
         return $"{_quantityString} {_unit} {_name}";
