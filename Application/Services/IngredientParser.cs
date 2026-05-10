@@ -59,6 +59,48 @@ public class IngredientParser : IIngredientParser
         return null;
     }
 
+    /// converts fraction string to decimal
+    private decimal ParseQuantity(string quantityString)
+    {
+        if (string.IsNullOrWhiteSpace(quantityString))
+            throw new FormatException("Quantity cannot be empty");
+
+        var trimmed = quantityString.Trim();
+
+        // check for mixed fraction
+        var mixedPattern = @"^(\d+(?:\.\d+)?)\s+(\d+)/(\d+)$";
+        var mixedMatch = Regex.Match(trimmed, mixedPattern);
+        if (mixedMatch.Success)
+        {
+            if (decimal.TryParse(mixedMatch.Groups[1].Value, out var wholePart) &&
+                decimal.TryParse(mixedMatch.Groups[2].Value, out var numerator) &&
+                decimal.TryParse(mixedMatch.Groups[3].Value, out var denominator) &&
+                denominator != 0)
+            {
+                return wholePart + (numerator / denominator);
+            }
+        }
+
+        // check for simple fraction
+        var fractionPattern = @"^(\d+)/(\d+)$";
+        var fractionMatch = Regex.Match(trimmed, fractionPattern);
+        if (fractionMatch.Success)
+        {
+            if (decimal.TryParse(fractionMatch.Groups[1].Value, out var numerator) &&
+                decimal.TryParse(fractionMatch.Groups[2].Value, out var denominator) &&
+                denominator != 0)
+            {
+                return numerator / denominator;
+            }
+        }
+
+        // fll back to standard decimal parsing
+        if (decimal.TryParse(trimmed, out var result))
+            return result;
+
+        throw new FormatException($"Invalid quantity format: {quantityString}");
+    }
+
     /// parse multiple lines at once
     public List<Ingredient> ParseMultiple(string multiLineText)
     {
@@ -75,27 +117,29 @@ public class IngredientParser : IIngredientParser
 
     private Ingredient? TryParseQuantityFirst(string input)
     {
-        // patterns like: "1kg", "1 kg", "1.5 kilogram", "2 cups"
-        var pattern = @"^(?<quantity>[\d.]+)\s*(?<unit>[a-zA-Z]+\.?)\s+(?<name>.+)$";
+        var pattern = @"^(?<quantity>[\d./ ]+?)\s*(?<unit>[a-zA-Z]+\.?)\s+(?<name>.+)$";
         var match = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
 
         if (!match.Success)
             return null;
 
-        if (!decimal.TryParse(match.Groups["quantity"].Value, out var quantity))
-            return null;
-
-        var unit = NormalizeUnit(match.Groups["unit"].Value);
-        var name = match.Groups["name"].Value.Trim();
-
-        if (string.IsNullOrWhiteSpace(name))
-            return null;
-
         try
         {
-            return new Ingredient(name, quantity, unit);
+            var quantityString = match.Groups["quantity"].Value.Trim();
+            var quantity = ParseQuantity(quantityString);
+            var unit = NormalizeUnit(match.Groups["unit"].Value);
+            var name = match.Groups["name"].Value.Trim();
+
+            if (string.IsNullOrWhiteSpace(name))
+                return null;
+
+            return new Ingredient(name, quantity, unit, quantityString);
         }
         catch (ArgumentException)
+        {
+            return null;
+        }
+        catch (FormatException)
         {
             return null;
         }
@@ -103,27 +147,29 @@ public class IngredientParser : IIngredientParser
 
     private Ingredient? TryParseQuantityLast(string input)
     {
-        // patterns like: "chicken breast 1kg", "flour 2 cups"
-        var pattern = @"^(?<name>.+?)\s+(?<quantity>[\d.]+)\s*(?<unit>[a-zA-Z]+\.?)$";
+        var pattern = @"^(?<name>.+?)\s+(?<quantity>[\d./ ]+?)\s*(?<unit>[a-zA-Z]+\.?)$";
         var match = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
 
         if (!match.Success)
             return null;
 
-        if (!decimal.TryParse(match.Groups["quantity"].Value, out var quantity))
-            return null;
-
-        var name = match.Groups["name"].Value.Trim();
-        var unit = NormalizeUnit(match.Groups["unit"].Value);
-
-        if (string.IsNullOrWhiteSpace(name))
-            return null;
-
         try
         {
-            return new Ingredient(name, quantity, unit);
+            var quantityString = match.Groups["quantity"].Value.Trim();
+            var quantity = ParseQuantity(quantityString);
+            var name = match.Groups["name"].Value.Trim();
+            var unit = NormalizeUnit(match.Groups["unit"].Value);
+
+            if (string.IsNullOrWhiteSpace(name))
+                return null;
+
+            return new Ingredient(name, quantity, unit, quantityString);
         }
         catch (ArgumentException)
+        {
+            return null;
+        }
+        catch (FormatException)
         {
             return null;
         }
@@ -131,26 +177,28 @@ public class IngredientParser : IIngredientParser
 
     private Ingredient? TryParseNameOnly(string input)
     {
-        // patterns like: "2 chicken breasts", "3 apples"
-        var pattern = @"^(?<quantity>[\d.]+)\s+(?<name>.+)$";
+        var pattern = @"^(?<quantity>[\d./ ]+?)\s+(?<name>.+)$";
         var match = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
 
         if (!match.Success)
             return null;
 
-        if (!decimal.TryParse(match.Groups["quantity"].Value, out var quantity))
-            return null;
-
-        var name = match.Groups["name"].Value.Trim();
-
-        if (string.IsNullOrWhiteSpace(name))
-            return null;
-
         try
         {
-            return new Ingredient(name, quantity, "piece");
+            var quantityString = match.Groups["quantity"].Value.Trim();
+            var quantity = ParseQuantity(quantityString);
+            var name = match.Groups["name"].Value.Trim();
+
+            if (string.IsNullOrWhiteSpace(name))
+                return null;
+
+            return new Ingredient(name, quantity, "piece", quantityString);
         }
         catch (ArgumentException)
+        {
+            return null;
+        }
+        catch (FormatException)
         {
             return null;
         }
