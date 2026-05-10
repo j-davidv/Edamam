@@ -118,7 +118,11 @@ namespace Edamam.Presentation.Services
             "• 1kg chicken breast\n" +
             "• chicken breast 1kg\n" +
             "• 2 cups flour\n" +
-            "• 500ml milk\n" +
+            "• 1/2 cup dry rolled oats\n" +
+            "• 1/3 cup sugar\n" +
+            "• 3/4 cup milk\n" +
+            "• 1 1/2 tablespoons\n" +
+            "• 500ml water\n" +
             "• 3 apples";
     }
 }
