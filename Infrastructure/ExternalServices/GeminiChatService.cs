@@ -71,35 +71,18 @@ You are friendly, supportive, and encouraging. Keep responses concise but inform
                 }
             }
 
-            // retry with exponential backoff for transient errors (high demand / rate limits)
-            dynamic response = null;
             int maxAttempts = 4;
             int delayMs = 800;
             for (int attempt = 1; attempt <= maxAttempts; attempt++)
             {
                 try
                 {
-                    response = await _geminiClient.Models.GenerateContentAsync(
+                    var response = await _geminiClient.Models.GenerateContentAsync(
                         model: MODEL_NAME,
                         contents: promptBuilder.ToString()
                     );
 
-                    if (response?.Candidates == null || response.Candidates.Count == 0)
-                    {
-                        throw new InvalidOperationException("Gemini API returned no candidates in response.");
-                    }
-
-                    var candidate = response.Candidates[0];
-                    if (candidate?.Content?.Parts == null || candidate.Content.Parts.Count == 0)
-                    {
-                        throw new InvalidOperationException("Gemini API returned no content parts in response.");
-                    }
-
-                    var responseText = candidate.Content.Parts[0].Text;
-                    if (string.IsNullOrWhiteSpace(responseText))
-                    {
-                        throw new InvalidOperationException("Gemini API returned empty response text.");
-                    }
+                    var responseText = ExtractResponseText(response);
 
                     // success
                     System.Diagnostics.Debug.WriteLine($"Gemini Chat Response: {responseText}");
@@ -138,5 +121,22 @@ You are friendly, supportive, and encouraging. Keep responses concise but inform
         if (msg.Contains("high demand") || msg.Contains("rate limit") || msg.Contains("429") || msg.Contains("503") || msg.Contains("timeout"))
             return true;
         return false;
+    }
+
+    private static string ExtractResponseText(GenerateContentResponse? response)
+    {
+        var candidates = response?.Candidates;
+        if (candidates == null || candidates.Count == 0)
+            throw new InvalidOperationException("Gemini API returned no candidates in response.");
+
+        var parts = candidates[0]?.Content?.Parts;
+        if (parts == null || parts.Count == 0)
+            throw new InvalidOperationException("Gemini API returned no content parts in response.");
+
+        var responseText = parts[0]?.Text;
+        if (string.IsNullOrWhiteSpace(responseText))
+            throw new InvalidOperationException("Gemini API returned empty response text.");
+
+        return responseText;
     }
 }
