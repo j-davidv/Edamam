@@ -1,4 +1,4 @@
-namespace Edamam
+﻿namespace Edamam
 {
     partial class Form1
     {
@@ -31,10 +31,11 @@ namespace Edamam
                 BackColor = appBackground,
                 Padding = new Padding(16)
             };
-            mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 220));  // Navigation + BMI
-            mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 360));  // Input Form
+            mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 210));  // Navigation + BMI
+            mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 330));  // Input Form
             mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));   // Main Content (Dashboard)
-            mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 340));  // Chat
+            mainTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 360));  // Chat
+            MainTableLayout = mainTableLayout;
 
             // SIDE NAVIGATION PANEL 
             var sideNavPanel = new Panel
@@ -52,7 +53,7 @@ namespace Edamam
                 Dock = DockStyle.Top,
                 BackColor = brandDark,
                 Padding = new Padding(16, 18, 16, 18),
-                Height = 304
+                Height = 250
             };
 
             // Add card styling with rounded corners and subtle shadow
@@ -94,7 +95,7 @@ namespace Edamam
             var navBrandLabel = new Label
             {
                 Text = "Edamam",
-                Font = new Font("Segoe UI Semibold", 13, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Display", 13, FontStyle.Bold),
                 ForeColor = Color.White,
                 AutoSize = true,
                 Margin = new Padding(0, 7, 0, 0)
@@ -121,7 +122,6 @@ namespace Edamam
             navFlowPanel.Controls.Add(BtnNavDashboard);
             navFlowPanel.Controls.Add(BtnNavMyMeals);
             navFlowPanel.Controls.Add(BtnNavDailyLog);
-            navFlowPanel.Controls.Add(BtnNavBmi);
 
             sideNavCardPanel.Controls.Add(navFlowPanel);
             sideNavCardPanel.Controls.Add(navHeaderPanel);
@@ -152,7 +152,7 @@ namespace Edamam
             var bmiTitleLabel = new Label
             {
                 Text = "BMI Calculator",
-                Font = new Font("Segoe UI Semibold", 11, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Display", 11, FontStyle.Bold),
                 ForeColor = brandDark,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 15),
@@ -162,7 +162,7 @@ namespace Edamam
             var heightLabel = new Label
             {
                 Text = "Height (cm):",
-                Font = new Font("Segoe UI", 10),
+                Font = new Font("Segoe UI Variable Text", 10),
                 ForeColor = textSecondary,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 8),
@@ -171,7 +171,7 @@ namespace Edamam
 
             TxtBmiHeight = new TextBox
             {
-                Font = new Font("Segoe UI", 11),
+                Font = new Font("Segoe UI Variable Text", 11),
                 BackColor = Color.FromArgb(250, 250, 250),
                 ForeColor = textPrimary,
                 BorderStyle = BorderStyle.FixedSingle,
@@ -185,7 +185,7 @@ namespace Edamam
             var weightLabel = new Label
             {
                 Text = "Weight (kg):",
-                Font = new Font("Segoe UI", 10),
+                Font = new Font("Segoe UI Variable Text", 10),
                 ForeColor = textSecondary,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 8),
@@ -194,7 +194,7 @@ namespace Edamam
 
             TxtBmiWeight = new TextBox
             {
-                Font = new Font("Segoe UI", 11),
+                Font = new Font("Segoe UI Variable Text", 11),
                 BackColor = Color.FromArgb(250, 250, 250),
                 ForeColor = textPrimary,
                 BorderStyle = BorderStyle.FixedSingle,
@@ -208,7 +208,7 @@ namespace Edamam
             var bmiResultLabel = new Label
             {
                 Text = "BMI Result:",
-                Font = new Font("Segoe UI", 10),
+                Font = new Font("Segoe UI Variable Text", 10),
                 ForeColor = textSecondary,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 8),
@@ -218,7 +218,7 @@ namespace Edamam
             LblBmiResult = new Label
             {
                 Text = "BMI: -",
-                Font = new Font("Segoe UI", 22, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Text", 22, FontStyle.Bold),
                 ForeColor = brandPrimary,
                 AutoSize = true,
                 Margin = new Padding(0, 10, 0, 0),
@@ -228,7 +228,7 @@ namespace Edamam
             var bmiCategoryLabel = new Label
             {
                 Text = "Category: -",
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Segoe UI Variable Text", 9),
                 ForeColor = textSecondary,
                 AutoSize = true,
                 Margin = new Padding(0, 5, 0, 0),
@@ -246,17 +246,26 @@ namespace Edamam
             bmiCardPanel.Controls.Add(heightLabel);
             bmiCardPanel.Controls.Add(bmiTitleLabel);
 
-            // Combine BMI and navigation into first column panel
-            var firstColumnPanel = new Panel
+            // Combine navigation and BMI into first column panel
+            var firstColumnPanel = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
+                ColumnCount = 1,
+                RowCount = 2,
                 BackColor = appBackground,
                 Padding = new Padding(0),
                 Margin = new Padding(0, 0, 6, 0),
                 AutoScroll = true
             };
+            firstColumnPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            firstColumnPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 260));
+            firstColumnPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-            firstColumnPanel.Controls.Add(sideNavPanel);
+            sideNavPanel.Dock = DockStyle.Fill;
+            bmiCardPanel.Dock = DockStyle.Fill;
+            bmiCardPanel.Margin = new Padding(0, 10, 0, 0);
+            firstColumnPanel.Controls.Add(sideNavPanel, 0, 0);
+            firstColumnPanel.Controls.Add(bmiCardPanel, 0, 1);
 
             // LEFT PANEL - INPUT FORM
             var inputTableLayout = new TableLayoutPanel
@@ -290,6 +299,7 @@ namespace Edamam
                 }
             };
             inputCardPanel.Controls.Add(inputTableLayout);
+            InputCardPanel = inputCardPanel;
             inputTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
             inputTableLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize)); // Header
             inputTableLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize)); // Meal Name Label
@@ -308,7 +318,7 @@ namespace Edamam
             var headerLabel = new Label
             {
                 Text = "Add Meal",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Text", 14, FontStyle.Bold),
                 ForeColor = brandDark,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 18),
@@ -319,7 +329,7 @@ namespace Edamam
             var lblMealName = CreateLabel("Meal Name");
             TextBoxMealName = new TextBox
             {
-                Font = new Font("Segoe UI", 10),
+                Font = new Font("Segoe UI Variable Text", 10),
                 BackColor = Color.FromArgb(250, 250, 250),
                 ForeColor = textPrimary,
                 BorderStyle = BorderStyle.FixedSingle,
@@ -340,7 +350,7 @@ namespace Edamam
             ComboBoxMealType = new ComboBox
             {
                 DropDownStyle = ComboBoxStyle.DropDownList,
-                Font = new Font("Segoe UI", 10),
+                Font = new Font("Segoe UI Variable Text", 10),
                 BackColor = Color.FromArgb(250, 250, 250),
                 ForeColor = textPrimary,
                 Margin = new Padding(0, 0, 0, 10),
@@ -361,7 +371,7 @@ namespace Edamam
             var lblMealDate = CreateLabel("Date");
             DateTimePickerMeal = new DateTimePicker
             {
-                Font = new Font("Segoe UI", 10),
+                Font = new Font("Segoe UI Variable Text", 10),
                 BackColor = Color.FromArgb(250, 250, 250),
                 ForeColor = textPrimary,
                 Format = DateTimePickerFormat.Short,
@@ -390,7 +400,7 @@ namespace Edamam
             var lblRecipes = new Label
             {
                 Text = "Recipes / Ingredients",
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Text", 10, FontStyle.Bold),
                 ForeColor = brandDark,
                 AutoSize = true,
                 Dock = DockStyle.Left,
@@ -400,7 +410,7 @@ namespace Edamam
 
             TextBoxRecipes = new TextBox
             {
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Segoe UI Variable Text", 9),
                 BackColor = Color.FromArgb(250, 250, 250),
                 ForeColor = textPrimary,
                 Multiline = true,
@@ -429,7 +439,7 @@ namespace Edamam
                 Text = "Clear Form",
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(84, 91, 104),
-                Font = new Font("Segoe UI Semibold", 10, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Display", 10, FontStyle.Bold),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Height = 38,
@@ -500,7 +510,7 @@ namespace Edamam
             var dashboardHeaderLabel = new Label
             {
                 Text = "Dashboard",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Text", 14, FontStyle.Bold),
                 ForeColor = brandDark,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 15)
@@ -511,7 +521,7 @@ namespace Edamam
                 Text = "Daily Calorie Intake",
                 BackColor = brandPrimary,
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Text", 9, FontStyle.Bold),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Height = 32,
@@ -557,31 +567,50 @@ namespace Edamam
             chatTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // Chat history
             chatTableLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize)); // Input area
 
+            var chatHeaderPanel = new TableLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                ColumnCount = 1,
+                RowCount = 2,
+                AutoSize = true,
+                Margin = new Padding(0, 0, 0, 10)
+            };
+            chatHeaderPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+
             var chatHeaderLabel = new Label
             {
                 Text = "AI Nutrition Coach",
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Display", 14, FontStyle.Bold),
                 ForeColor = brandDark,
+                AutoSize = true,
+                Margin = new Padding(0, 0, 0, 3)
+            };
+
+            var chatStatusLabel = new Label
+            {
+                Text = "Personalized nutrition guidance",
+                Font = new Font("Segoe UI Variable Text", 9),
+                ForeColor = textSecondary,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 8)
             };
+            chatHeaderPanel.Controls.Add(chatHeaderLabel, 0, 0);
+            chatHeaderPanel.Controls.Add(chatStatusLabel, 0, 1);
 
-            TextBoxChatHistory = new RichTextBox
+            ChatHistoryPanel = new FlowLayoutPanel
             {
                 BackColor = Color.FromArgb(246, 248, 250),
-                ForeColor = textPrimary,
-                Font = new Font("Segoe UI", 9),
-                ReadOnly = true,
-                BorderStyle = BorderStyle.None,
                 Dock = DockStyle.Fill,
-                Margin = new Padding(0, 0, 0, 10),
-                WordWrap = true,
-                Padding = new Padding(10)
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+                AutoScroll = true,
+                Padding = new Padding(12),
+                Margin = new Padding(0, 0, 0, 12)
             };
 
             TextBoxChatInput = new TextBox
             {
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Segoe UI Variable Text", 9),
                 BackColor = Color.White,
                 ForeColor = textPrimary,
                 BorderStyle = BorderStyle.None,
@@ -602,7 +631,7 @@ namespace Edamam
             var chatInputPanel = new Panel
             {
                 Dock = DockStyle.Top,
-                Height = 110,
+                Height = 104,
                 BackColor = appBackground,
                 Padding = new Padding(10)
             };
@@ -660,11 +689,11 @@ namespace Edamam
             BtnSendMessage = new Button
             {
                 Text = "➤",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Text", 16, FontStyle.Bold),
                 BackColor = brandPrimary,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
-                Width = 44,
+                Width = 48,
                 Height = 44,
                 Cursor = Cursors.Hand,
                 Margin = new Padding(0),
@@ -680,7 +709,11 @@ namespace Edamam
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 using (var path = new System.Drawing.Drawing2D.GraphicsPath())
                 {
-                    path.AddEllipse(0, 0, BtnSendMessage.Width - 1, BtnSendMessage.Height - 1);
+                    path.AddArc(0, 0, 18, 18, 180, 90);
+                    path.AddArc(BtnSendMessage.Width - 19, 0, 18, 18, 270, 90);
+                    path.AddArc(BtnSendMessage.Width - 19, BtnSendMessage.Height - 19, 18, 18, 0, 90);
+                    path.AddArc(0, BtnSendMessage.Height - 19, 18, 18, 90, 90);
+                    path.CloseFigure();
                     BtnSendMessage.Region = new Region(path);
                 }
             };
@@ -688,8 +721,8 @@ namespace Edamam
             inputLayoutPanel.Controls.Add(BtnSendMessage, 1, 0);
             chatInputPanel.Controls.Add(inputLayoutPanel);
 
-            chatTableLayout.Controls.Add(chatHeaderLabel, 0, 0);
-            chatTableLayout.Controls.Add(TextBoxChatHistory, 0, 1);
+            chatTableLayout.Controls.Add(chatHeaderPanel, 0, 0);
+            chatTableLayout.Controls.Add(ChatHistoryPanel, 0, 1);
             chatTableLayout.Controls.Add(chatInputPanel, 0, 2);
 
             var chatCardPanel = new Panel
@@ -725,7 +758,7 @@ namespace Edamam
             {
                 BackColor = appBackground,
                 ForeColor = textSecondary,
-                Font = new Font("Segoe UI", 9)
+                Font = new Font("Segoe UI Variable Text", 9)
             };
 
             StatusLabel = new ToolStripStatusLabel
@@ -740,10 +773,10 @@ namespace Edamam
             Controls.Add(mainTableLayout);
             Controls.Add(StatusStrip);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1680, 860);
-            MinimumSize = new Size(1440, 820);
+            ClientSize = new Size(1600, 860);
+            MinimumSize = new Size(1180, 760);
             Text = "Edamam - Meal Planner";
-            Font = new Font("Segoe UI", 9F);
+            Font = new Font("Segoe UI Variable Text", 9F);
             BackColor = appBackground;
             Load += Form1_Load;
         }
@@ -753,7 +786,7 @@ namespace Edamam
             return new Label
             {
                 Text = text,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Text", 10, FontStyle.Bold),
                 ForeColor = Color.FromArgb(58, 65, 78),
                 AutoSize = true,
                 Margin = new Padding(0, 10, 0, 3)
@@ -767,7 +800,7 @@ namespace Edamam
                 Text = text,
                 BackColor = Color.FromArgb(52, 168, 83), // Vibrant green
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI Semibold", 10, FontStyle.Bold),
+                Font = new Font("Segoe UI Variable Display", 10, FontStyle.Bold),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Height = 38,
@@ -788,7 +821,7 @@ namespace Edamam
                 Text = text,
                 BackColor = Color.FromArgb(31, 71, 55),
                 ForeColor = Color.FromArgb(222, 233, 227),
-                Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                Font = new Font("Segoe UI Variable Text", 10, FontStyle.Regular),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 Width = 182,
@@ -809,9 +842,11 @@ namespace Edamam
 
         // designer Controls
         public Panel InputPanel;
+        public Panel InputCardPanel;
         public Panel ContentPanel;
         public Panel ContentInnerPanel;
         public Panel ChatPanel;
+        public TableLayoutPanel MainTableLayout;
         public TextBox TextBoxMealName;
         public ComboBox ComboBoxMealType;
         public DateTimePicker DateTimePickerMeal;
@@ -822,7 +857,7 @@ namespace Edamam
         public Button BtnNavMyMeals;
         public Button BtnNavDailyLog;
         public Button BtnNavBmi;
-        public RichTextBox TextBoxChatHistory;
+        public FlowLayoutPanel ChatHistoryPanel;
         public TextBox TextBoxChatInput;
         public Button BtnSendMessage;
         public TextBox TxtBmiHeight;
@@ -835,3 +870,5 @@ namespace Edamam
         public ToolStripStatusLabel StatusLabel;
     }
 }
+
+
