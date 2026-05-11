@@ -1678,7 +1678,7 @@ namespace Edamam
                 TextBoxRecipes.Clear();
                 ComboBoxMealType.SelectedIndex = 0;
 
-                UpdateMealLists();
+                ShowDashboardPanel();
             }
             catch (Exception ex)
             {
