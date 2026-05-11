@@ -15,12 +15,14 @@ Edamame is a WinForms desktop application for composing meals from recipes, pars
 [View full-size diagram](Assets/Meal%20Analysis%20Framework-2026-05-11-121649.png)
 
 ## Features and Functionalities
-- Create, edit and combine recipes into meals
-- Parse ingredient lines and normalize quantity/unit/name
-- Analyze meals and recipes for calories, protein, carbs, fat, sodium, sugar, saturated fat
-- Provide basic dietary classification and short dietary advice
-- In-memory caching for nutrition lookups to reduce repeated API calls
-- WinForms UI for creating meals, viewing analysis, and editing recipes
+
+- **Meal Tracking & Management** — Create, update, and delete meals with full recipe and ingredient support. Meals are timestamped and associated with nutritional data that is automatically calculated.
+
+- **Nutritional Analysis via AI** — Sends meal ingredients to the Google Gemini API and returns a full nutritional breakdown, dietary classification, and personalized advice. Results are cached to minimize redundant API calls.
+
+- **Dashboard with Aggregated Statistics** — Displays nutritional totals and progress across daily, weekly, and monthly time ranges. Visual elements include stat cards, a macronutrient stacked bar, and a calorie progress indicator.
+
+- **AI Nutrition Coach** — An interactive chatbot for nutrition guidance, powered by Google Gemini API.
 
 ## How the program works
 1. User creates or edits recipes with ingredient lines.
