@@ -203,7 +203,7 @@ public class GeminiNutritionAnalysisService : INutritionAnalysisService
 
             var ingredientsList = string.Join("\n", normalizedIngredients);
 
-            var prompt = $@"Analyze the following ingredients and calculate their nutritional values per serving or per combined meal.
+            var prompt = $@"Analyze the following ingredients and calculate the TOTAL nutritional values for the COMBINED meal (sum of all listed ingredients). Do NOT return per-serving values or attempt to infer serving sizes — treat the list as a single combined meal. Ignore any meal name, meal type, date, or other metadata; base your calculations ONLY on the ingredient lines below.
 Ingredients:
 {ingredientsList}
 
@@ -218,7 +218,7 @@ Return ONLY a valid JSON object with no additional text or formatting (no markdo
   ""saturatedFat"": <number - grams of saturated fat>
 }}
 
-Ensure all values are numbers and non-negative. If a value cannot be determined, use 0.";
+Ensure all values are numbers and non-negative. If a value cannot be determined, use 0. Be deterministic: do not include explanatory text or units — only numeric values for the fields listed above.";
 
             System.Diagnostics.Debug.WriteLine($"Gemini Request: {prompt}");
 
