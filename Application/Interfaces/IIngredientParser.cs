@@ -1,6 +1,6 @@
-using Edamam.Domain.Entities;
+using Edamame.Domain.Entities;
 
-namespace Edamam.Application.Interfaces;
+namespace Edamame.Application.Interfaces;
 
 /// interface for ingredient parsing
 public interface IIngredientParser

@@ -3,10 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.EnvironmentVariables;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
-using Edamam.Infrastructure.Configuration;
-using Edamam.Presentation.Interfaces;
+using Edamame.Infrastructure.Configuration;
+using Edamame.Presentation.Interfaces;
 
-namespace Edamam
+namespace Edamame
 {
     internal static class Program
     {

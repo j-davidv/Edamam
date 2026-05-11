@@ -1,4 +1,4 @@
-namespace Edamam.Presentation.Models
+namespace Edamame.Presentation.Models
 {
     // Encapsulation of meal filtering params
     public class MealFilterParameters

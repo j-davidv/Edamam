@@ -1,6 +1,6 @@
 using LiteDB;
 
-namespace Edamam.Domain.Entities;
+namespace Edamame.Domain.Entities;
 
 public class Ingredient : EntityBase
 {

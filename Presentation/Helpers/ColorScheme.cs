@@ -1,6 +1,6 @@
-using Edamam.Presentation.Interfaces;
+using Edamame.Presentation.Interfaces;
 
-namespace Edamam.Presentation.Helpers
+namespace Edamame.Presentation.Helpers
 {
     /// <summary>
     /// ✅ Refactored - Default color theme implementation

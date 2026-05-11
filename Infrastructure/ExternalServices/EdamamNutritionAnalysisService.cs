@@ -2,13 +2,13 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Google.GenAI;
 using Google.GenAI.Types;
-using Edamam.Domain.Entities;
-using Edamam.Domain.Interfaces;
+using Edamame.Domain.Entities;
+using Edamame.Domain.Interfaces;
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Edamam.Infrastructure.ExternalServices;
+namespace Edamame.Infrastructure.ExternalServices;
 
 public class GeminiNutritionAnalysisService : INutritionAnalysisService
 {

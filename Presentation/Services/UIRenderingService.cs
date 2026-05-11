@@ -1,6 +1,6 @@
-﻿using Edamam.Presentation.Helpers;
+﻿using Edamame.Presentation.Helpers;
 
-namespace Edamam.Presentation.Services
+namespace Edamame.Presentation.Services
 {
     /// <summary>
     /// Centralizes UI component creation and styling

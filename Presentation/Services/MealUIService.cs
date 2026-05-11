@@ -1,10 +1,10 @@
-using Edamam.Application.Interfaces;
-using Edamam.Application.Services;
-using Edamam.Domain.Entities;
-using Edamam.Domain.Interfaces;
+using Edamame.Application.Interfaces;
+using Edamame.Application.Services;
+using Edamame.Domain.Entities;
+using Edamame.Domain.Interfaces;
 using System.Text;
 
-namespace Edamam.Presentation.Services
+namespace Edamame.Presentation.Services
 {
 
     public class MealUIService

@@ -1,6 +1,6 @@
 using LiteDB;
 
-namespace Edamam.Infrastructure.Persistence;
+namespace Edamame.Infrastructure.Persistence;
 
 
 // managing LiteDB connections
@@ -46,13 +46,13 @@ public class LiteDbConnectionFactory
         var mapper = BsonMapper.Global;
 
         // Configure nested collection handling
-        mapper.Entity<Edamam.Domain.Entities.Meal>()
+        mapper.Entity<Edamame.Domain.Entities.Meal>()
             .Id(x => x.Id);
 
-        mapper.Entity<Edamam.Domain.Entities.Recipe>()
+        mapper.Entity<Edamame.Domain.Entities.Recipe>()
             .Id(x => x.Id);
 
-        mapper.Entity<Edamam.Domain.Entities.NutritionalMetric>();
+        mapper.Entity<Edamame.Domain.Entities.NutritionalMetric>();
     }
 
     public void CloseDatabase()

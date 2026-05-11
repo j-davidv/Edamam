@@ -1,4 +1,4 @@
-namespace Edamam.Presentation.Models
+namespace Edamame.Presentation.Models
 {
     
     // manages chat session state and history

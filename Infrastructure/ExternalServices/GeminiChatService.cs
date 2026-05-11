@@ -1,8 +1,8 @@
 using Google.GenAI;
 using Google.GenAI.Types;
-using Edamam.Domain.Interfaces;
+using Edamame.Domain.Interfaces;
 
-namespace Edamam.Infrastructure.ExternalServices;
+namespace Edamame.Infrastructure.ExternalServices;
 
 /// Implements IGeminiChatService
 /// conversational AI assistant

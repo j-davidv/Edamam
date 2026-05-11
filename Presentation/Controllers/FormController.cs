@@ -1,11 +1,11 @@
-using Edamam.Application.Interfaces;
-using Edamam.Domain.Entities;
-using Edamam.Domain.Interfaces;
-using Edamam.Presentation.Interfaces;
-using Edamam.Presentation.Models;
-using Edamam.Presentation.Services;
+using Edamame.Application.Interfaces;
+using Edamame.Domain.Entities;
+using Edamame.Domain.Interfaces;
+using Edamame.Presentation.Interfaces;
+using Edamame.Presentation.Models;
+using Edamame.Presentation.Services;
 
-namespace Edamam.Presentation.Controllers
+namespace Edamame.Presentation.Controllers
 {
     public class FormController : IFormController
     {

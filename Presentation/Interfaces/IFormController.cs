@@ -1,8 +1,8 @@
-using Edamam.Domain.Entities;
-using Edamam.Presentation.Models;
-using Edamam.Presentation.Services;
+using Edamame.Domain.Entities;
+using Edamame.Presentation.Models;
+using Edamame.Presentation.Services;
 
-namespace Edamam.Presentation.Interfaces;
+namespace Edamame.Presentation.Interfaces;
 
 /// interface form controller 
 public interface IFormController

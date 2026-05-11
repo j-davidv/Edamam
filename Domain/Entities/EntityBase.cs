@@ -1,6 +1,6 @@
 using LiteDB;
 
-namespace Edamam.Domain.Entities;
+namespace Edamame.Domain.Entities;
 
 /// Base class for all domain entities 
 public abstract class EntityBase

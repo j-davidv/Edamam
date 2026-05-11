@@ -1,4 +1,4 @@
-namespace Edamam.Presentation.Models
+namespace Edamame.Presentation.Models
 {
     // DTO containing aggregated dashboard stats
     public class DashboardData

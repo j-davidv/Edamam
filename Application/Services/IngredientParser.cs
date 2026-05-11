@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
-using Edamam.Domain.Entities;
-using Edamam.Application.Interfaces;
+using Edamame.Domain.Entities;
+using Edamame.Application.Interfaces;
 
-namespace Edamam.Application.Services;
+namespace Edamame.Application.Services;
 
 public class IngredientParser : IIngredientParser
 {

@@ -1,4 +1,4 @@
-﻿namespace Edamam
+﻿namespace Edamame
 {
     partial class MainForm
     {
@@ -94,7 +94,7 @@
             // App name label
             var navBrandLabel = new Label
             {
-                Text = "Edamam",
+                Text = "Edamame",
                 Font = new Font("Segoe UI Variable Display", 13, FontStyle.Bold),
                 ForeColor = Color.White,
                 AutoSize = true,
@@ -775,7 +775,7 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1600, 860);
             MinimumSize = new Size(1180, 760);
-            Text = "Edamam - Meal Planner";
+            Text = "Edamame - Meal Planner";
             Font = new Font("Segoe UI Variable Text", 9F);
             BackColor = appBackground;
             Load += MainForm_Load;

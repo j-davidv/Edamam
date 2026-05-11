@@ -1,6 +1,6 @@
-using Edamam.Domain.Entities;
+using Edamame.Domain.Entities;
 
-namespace Edamam.Domain.Interfaces;
+namespace Edamame.Domain.Interfaces;
 
 /// abstraction for nutrition analysis service
 /// defines contract for AI-based nutritional analysis

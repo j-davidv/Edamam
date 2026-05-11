@@ -1,4 +1,4 @@
-namespace Edamam.Domain.Interfaces;
+namespace Edamame.Domain.Interfaces;
 
 /// interface for Gemini chat service
 /// defines contract for user AI interactions

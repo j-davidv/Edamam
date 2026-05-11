@@ -1,7 +1,7 @@
-using Edamam.Domain.Entities;
-using Edamam.Presentation.Models;
+using Edamame.Domain.Entities;
+using Edamame.Presentation.Models;
 
-namespace Edamam.Presentation.Services
+namespace Edamame.Presentation.Services
 {
     /// logic for dashboard calculations and filtering
     /// Separates data aggregation from UI rendering

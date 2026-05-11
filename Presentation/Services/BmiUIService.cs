@@ -1,6 +1,6 @@
-using Edamam.Presentation.Helpers;
+using Edamame.Presentation.Helpers;
 
-namespace Edamam.Presentation.Services
+namespace Edamame.Presentation.Services
 {
     ///  logic for BMI calculations and categorization
     public class BmiUIService

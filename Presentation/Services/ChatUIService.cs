@@ -1,6 +1,6 @@
-using Edamam.Domain.Interfaces;
+using Edamame.Domain.Interfaces;
 
-namespace Edamam.Presentation.Services
+namespace Edamame.Presentation.Services
 {
     /// chat UI logic 
     public class ChatUIService

@@ -1,4 +1,4 @@
-namespace Edamam.Presentation.Interfaces;
+namespace Edamame.Presentation.Interfaces;
 
 public interface IColorTheme
 {

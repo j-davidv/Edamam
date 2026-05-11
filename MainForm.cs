@@ -1,11 +1,11 @@
-﻿using Edamam.Presentation.Interfaces;
-using Edamam.Presentation.Models;
-using Edamam.Domain.Entities;
-using Edamam.Domain.Interfaces;
+﻿using Edamame.Presentation.Interfaces;
+using Edamame.Presentation.Models;
+using Edamame.Domain.Entities;
+using Edamame.Domain.Interfaces;
 using System.Text;
-using Edamam.Application.Interfaces;
+using Edamame.Application.Interfaces;
 
-namespace Edamam
+namespace Edamame
 {
     public partial class MainForm : Form
     {

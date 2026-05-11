@@ -1,7 +1,7 @@
 using LiteDB;
-using Edamam.Domain.Interfaces;
+using Edamame.Domain.Interfaces;
 
-namespace Edamam.Infrastructure.Persistence;
+namespace Edamame.Infrastructure.Persistence;
 
 ///repository implementation for LiteDB with thread-safe operations
 /// dependency Inversion through IRepository interface

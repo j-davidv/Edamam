@@ -1,16 +1,16 @@
 using LiteDB;
 using Microsoft.Extensions.DependencyInjection;
-using Edamam.Application.Interfaces;
-using Edamam.Application.Services;
-using Edamam.Domain.Entities;
-using Edamam.Domain.Interfaces;
-using Edamam.Infrastructure.ExternalServices;
-using Edamam.Infrastructure.Persistence;
-using Edamam.Presentation.Helpers;
-using Edamam.Presentation.Interfaces;
-using Edamam.Presentation.Services;
+using Edamame.Application.Interfaces;
+using Edamame.Application.Services;
+using Edamame.Domain.Entities;
+using Edamame.Domain.Interfaces;
+using Edamame.Infrastructure.ExternalServices;
+using Edamame.Infrastructure.Persistence;
+using Edamame.Presentation.Helpers;
+using Edamame.Presentation.Interfaces;
+using Edamame.Presentation.Services;
 
-namespace Edamam.Infrastructure.Configuration;
+namespace Edamame.Infrastructure.Configuration;
 public static class ServiceCollectionExtensions
 {
     // registers all application services with DI container

@@ -1,7 +1,7 @@
-using Edamam.Domain.Entities;
-using Edamam.Domain.Interfaces;
+using Edamame.Domain.Entities;
+using Edamame.Domain.Interfaces;
 
-namespace Edamam.Application.Services;
+namespace Edamame.Application.Services;
 
 
 /// <summary>

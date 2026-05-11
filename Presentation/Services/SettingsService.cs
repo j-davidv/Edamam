@@ -1,4 +1,4 @@
-namespace Edamam.Presentation.Services
+namespace Edamame.Presentation.Services
 {
     /// handles application settings persistence
 

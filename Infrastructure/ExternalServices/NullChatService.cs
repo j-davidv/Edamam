@@ -1,6 +1,6 @@
-using Edamam.Domain.Interfaces;
+using Edamame.Domain.Interfaces;
 
-namespace Edamam.Infrastructure.ExternalServices;
+namespace Edamame.Infrastructure.ExternalServices;
 public class NullChatService : IGeminiChatService
 {
     private const string UnavailableMessage = 

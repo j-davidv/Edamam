@@ -1,4 +1,4 @@
-namespace Edamam.Domain.Interfaces;
+namespace Edamame.Domain.Interfaces;
 
 /// generic repository operations
 

@@ -1,4 +1,4 @@
-namespace Edamam.Domain.Entities;
+namespace Edamame.Domain.Entities;
 
 public abstract class NutritionalBase
 {
